@@ -1,71 +1,67 @@
-# Premier League iOS App
+# 📱 Premier League iOS App
 
-Aplicação iOS para acompanhar a **Premier League**, desenvolvida em SwiftUI com arquitetura MVVM.
+> Eleven players. One table. Zero excuses.
 
-## Funcionalidades
+A SwiftUI app to follow the Premier League — browse teams, check the live standings, and manage your personal list of favourites with ratings and notes.
 
-- **Equipas** — Lista todas as 20 equipas da Premier League com escudo e estádio
-- **Classificação** — Tabela em tempo real com zonas coloridas (Champions League, Europa League, Descida)
-- **Favoritas** — Guarda equipas favoritas com avaliação por estrelas e notas pessoais
-- **Detalhe de Equipa** — Informações completas: estádio, ano de fundação, cores, website
+## What's inside
+- Browse all 20 Premier League clubs with crest and home stadium
+- Live league table with colour-coded qualification zones (Champions League, Europa League, Conference League, Relegation)
+- Save favourite teams with a personal star rating (1–5) and custom notes
+- Full team detail page: founded year, club colours, stadium, and official website
+- Edit and delete favourites at any time
+- Favourites sorted by most recently saved — because recency matters
+- SwiftData persistence — your data survives app restarts
+- MVVM architecture with `@Observable` (iOS 17+)
+- Async/await networking with `URLSession`
 
-## Tecnologias
+## Tech Stack
+`SwiftUI` | `SwiftData` | `Observation` | `URLSession` | `football-data.org API v4`
 
-| Tecnologia | Uso |
-|---|---|
-| SwiftUI | Interface declarativa |
-| SwiftData | Persistência local (favoritas) |
-| Observation (`@Observable`) | Gestão de estado (iOS 17+) |
-| URLSession (async/await) | Chamadas à API |
-| [football-data.org v4](https://www.football-data.org/) | Dados da Premier League |
-
-## Arquitetura
+## Architecture
 
 ```
 MVVM
-├── Models       → Equipa, Classificacao, EquipaFavorita
-├── ViewModels   → EquipasViewModel, ClassificacaoViewModel
-├── Views        → EquipasView, ClassificacaoView, FavoritasView, ...
-└── API          → APIHandler (singleton)
+├── Models       →  Equipa, Classificacao, EquipaFavorita
+├── ViewModels   →  EquipasViewModel, ClassificacaoViewModel
+├── Views        →  EquipasView, ClassificacaoView, FavoritasView + detail/row views
+└── API          →  APIHandler (singleton)
 ```
 
-## Estrutura do Projeto
+## Screens
 
-```
-PremierLeague/
-├── APIHandler.swift
-├── Equipa.swift
-├── Classificacao.swift
-├── EquipaFavorita.swift
-├── EquipasViewModel.swift
-├── ClassificacaoViewModel.swift
-├── ContentView.swift
-├── EquipasView.swift
-├── EquipaRowView.swift
-├── DetalheEquipaView.swift
-├── ClassificacaoView.swift
-├── FavoritasView.swift
-├── FavoritaRowView.swift
-├── FavoritaDetalheView.swift
-└── EditarFavoritaView.swift
-```
+| Screen | Description |
+|---|---|
+| 🏟️ Teams | Full list of Premier League clubs |
+| 📊 Standings | Live table with zone highlights |
+| ⭐ Favourites | Your saved teams with ratings |
+| 🔍 Team Detail | Club info, crest, website |
+| ✏️ Edit Favourite | Update rating and personal notes |
 
-## Requisitos
+## Honest notes
+- All variable names and labels are in Portuguese. The Premier League is not. It works anyway.
+- Error handling runs on `try!` throughout. It's brave. Refactoring is on the list.
+- The API token is hardcoded in `APIHandler.swift`. It's a known issue. It will be addressed. Probably.
+- First iOS project with real API integration and local persistent storage. SwiftData turned out to be surprisingly painless.
+- Drag-to-reorder is set up in the Favourites list. The handler is empty. One step at a time.
 
+## Requirements
 - iOS 17+
 - Xcode 15+
-- Chave de API: [football-data.org](https://www.football-data.org/client/register)
+- API key from [football-data.org](https://www.football-data.org/client/register)
 
-## Instalação
+## Getting Started
 
-1. Clona o repositório:
-   ```bash
-   git clone https://github.com/VidiPT89/iOS_app_PremierLeague.git
-   ```
-2. Abre `PremierLeague.xcodeproj` no Xcode
-3. Substitui o token em `APIHandler.swift` pela tua chave de API
-4. Compila e executa num simulador ou dispositivo iOS 17+
+```bash
+git clone https://github.com/VidiPT89/iOS_app_PremierLeague.git
+```
 
-## Autor
+1. Open `PremierLeague.xcodeproj` in Xcode
+2. Replace the token in `APIHandler.swift` with your own API key
+3. Build and run on a simulator or iOS 17+ device
 
-David Martins — CESAE Digital, 2026
+## Context
+Built as part of my Mobile Development (iOS) module at CESAE Digital.
+First SwiftUI project with live API data, navigation stacks, and persistent local storage.
+
+*Next up: proper error handling. For real this time.*
